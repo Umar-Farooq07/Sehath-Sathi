@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sehath Saathi - Your Family's Health, Automated.</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Auth0 SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Gray Background */
+            color: #F9FAFB; /* Off-white text */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #2DD4BF, #34D399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="min-h-screen flex flex-col">
+
+        <!-- Header -->
+        <header class="sticky top-0 bg-gray-900/50 backdrop-blur-lg border-b border-gray-800 z-10">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <svg class="h-8 w-8 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                    </svg>
+                    <span class="text-2xl font-bold text-white">Sehath Saathi</span>
+                </div>
+                <div class="space-x-4">
+                    <button id="login-button" class="px-5 py-2 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">Login</button>
+                    <button id="signup-button" class="px-5 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-500 transition-colors">Signup</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section class="py-20 md:py-32">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white">
+                        Peace of mind, <span class="gradient-text">delivered.</span>
+                    </h1>
+                    <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-300">
+                        Sehath Saathi is the bridge across the distance. We provide a simple, reliable way for you to manage your parents' health and medication, no matter how far away you are.
+                    </p>
+                    <div class="mt-10">
+                        <button id="cta-button" class="bg-teal-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-teal-500 transform hover:-translate-y-1 transition-all">
+                            Get Started for Free
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision and Mission Section -->
+            <section class="py-20 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- Vision Card -->
+                        <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 transform hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="p-3 bg-gray-700 rounded-full">
+                                    <svg class="h-6 w-6 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <h2 class="text-3xl font-bold text-white">Our Vision</h2>
+                            </div>
+                            <p class="text-gray-300 text-lg leading-relaxed">
+                                Connecting parents with their children. Fostering a support system that goes beyond general healthcare, recreating the bond of a joint family, virtually.
+                            </p>
+                        </div>
+                        
+                        <!-- Mission Card -->
+                        <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 transform hover:scale-105 transition-transform duration-300">
+                           <div class="flex items-center space-x-4 mb-4">
+                                <div class="p-3 bg-gray-700 rounded-full">
+                                   <svg class="h-6 w-6 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9a9.75 9.75 0 1111.46-8.883a12.75 12.75 0 01-1.46 9.383M16.5 18.75a9.75 9.75 0 00-9-9.75m9 9.75c0 1.146-.233 2.232-.656 3.223M4.5 9.75a9.75 9.75 0 019-9.75m-9 9.75a9.75 9.75 0 009 9.75" />
+                                    </svg>
+                                </div>
+                                <h2 class="text-3xl font-bold text-white">Our Mission</h2>
+                            </div>
+                            <p class="text-gray-300 text-lg leading-relaxed">
+                                To make every senior citizen feel secure, connected, and supported. We want to ensure they never feel that they are alone in managing their health.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-900 border-t border-gray-800">
+            <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+                <p>&copy; 2025 Sehath Saathi. All rights reserved.</p>
+                <p class="text-sm mt-2">Made with ❤️ for families everywhere.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // --- Auth0 Configuration ---
+            // Find your credentials using the guide I provided.
+            const auth0 = await auth0spa.createAuth0Client({
+                domain: "YOUR_AUTH0_DOMAIN", // Paste your Domain here
+                clientId: "YOUR_AUTH0_CLIENT_ID", // Paste your Client ID here
+                authorizationParams: {
+                    redirect_uri: window.location.origin
+                }
+            });
+
+            // --- UI Elements ---
+            const loginButton = document.getElementById('login-button');
+            const signupButton = document.getElementById('signup-button');
+            const ctaButton = document.getElementById('cta-button');
+
+            // --- Event Listeners ---
+            loginButton.addEventListener('click', () => {
+                auth0.loginWithRedirect();
+            });
+
+            signupButton.addEventListener('click', () => {
+                auth0.loginWithRedirect({
+                    authorizationParams: {
+                        screen_hint: 'signup',
+                    }
+                });
+            });
+            
+            ctaButton.addEventListener('click', () => {
+                auth0.loginWithRedirect({
+                     authorizationParams: {
+                        screen_hint: 'signup',
+                    }
+                });
+            });
+
+            // --- Handle Auth0 Redirect ---
+            const handleRedirectCallback = async () => {
+                const url = window.location.search;
+                if (url.includes("code=") && url.includes("state=")) {
+                    await auth0.handleRedirectCallback();
+                    window.history.replaceState({}, document.title, "/");
+                    
+                    const isAuthenticated = await auth0.isAuthenticated();
+                    if (isAuthenticated) {
+                        const user = await auth0.getUser();
+                        alert(`Welcome, ${user.name || user.email}! You are now logged in.`);
+                    }
+                }
+            };
+
+            handleRedirectCallback();
+        });
+    </script>
+
+</body>
+</html>
+
+
