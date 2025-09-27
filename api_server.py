@@ -20,27 +20,27 @@ schedules_collection = db.schedules
 
 # ------------------ INSERT TEST SCHEDULE ------------------
 # Generate a unique ID for the schedule
-schedule_id = str(uuid.uuid4())
+# schedule_id = str(uuid.uuid4())
 
-# Schedule a call 1 minute from now
-time_for_call = datetime.now() + timedelta(minutes=1)
+# # Schedule a call 1 minute from now
+# time_for_call = datetime.now() + timedelta(minutes=1)
 
-test_schedule = {
-    "_id": schedule_id,
-    "patient_name": "Umar",
-    "caretaker_name": "Farooq",
-    "patient_number": "+916362511760",
-    "caretaker_number": "+916362511760",
-    "tablet_name": "Tusq",
-    "time": time_for_call,
-    "status": 0,            # 0 = not called yet
-    "missed_attempts": 0
-}
+# test_schedule = {
+#     "_id": schedule_id,
+#     "patient_name": "Umar",
+#     "caretaker_name": "Farooq",
+#     "patient_number": "+916362511760",
+#     "caretaker_number": "+916362511760",
+#     "tablet_name": "Tusq",
+#     "time": time_for_call,
+#     "status": 0,            # 0 = not called yet
+#     "missed_attempts": 0
+# }
 
-schedules_collection.insert_one(test_schedule)
+# schedules_collection.insert_one(test_schedule)
 
-print(f"Inserted test schedule with ID: {schedule_id}")
-print(f"Scheduled time: {time_for_call}")
+# print(f"Inserted test schedule with ID: {schedule_id}")
+# print(f"Scheduled time: {time_for_call}")
 
 
 # ------------------ CONFIG ------------------
@@ -204,3 +204,4 @@ if __name__ == "__main__":
     threading.Thread(target=schedule_checker, daemon=True).start()
     print("Starting Flask server on http://localhost:5000")
     app.run(host='0.0.0.0', port=5000)
+
